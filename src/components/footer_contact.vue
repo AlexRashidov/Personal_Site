@@ -10,7 +10,7 @@
         <h3 class="footer_title">Get in Touch</h3>
 
         <div class="contact_item">
-          <div class="contact_icon"><img src="C:\Users\rashi\WebstormProjects\test\src\img\email.png" alt=""></div>
+          <div class="contact_icon"><img class="social_icon" src="../img/email.png" alt=""></div>
           <div class="contact_info">
             <span class="contact_label">Email</span>
             <a href="mailto:rashidov.sasha@yandex.ru" class="contact_link">rashidov.sasha@yandex.ru</a>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="contact_item">
-          <div class="contact_icon"><img src="C:\Users\rashi\WebstormProjects\test\src\img\phone.png" alt=""></div>
+          <div class="contact_icon"><img class="social_icon" src="../img/phone.png" alt=""></div>
           <div class="contact_info">
             <span class="contact_label">Phone</span>
             <a href="tel:+1234567890" class="contact_link">+7 923-442-21-15</a>
@@ -27,7 +27,7 @@
 
         <div class="contact_item">
           <div class="contact_icon">
-            <img src="C:\Users\rashi\WebstormProjects\test\src\img\location.png" alt="">
+            <img class="social_icon" src="../img/location.png" alt="">
           </div>
           <div class="contact_info">
             <span class="contact_label">Location</span>
@@ -41,10 +41,10 @@
         <h3 class="footer_title">Follow Me</h3>
         <div class="social_links">
           <a href="https://github.com/AlexRashidov" class="social_link" aria-label="GitHub">
-            <img src="C:\Users\rashi\WebstormProjects\test\src\img\github.png" alt="">
+            <img class="social_icon" src="../img/github.png" alt="">
           </a>
           <a href="@fonvi1" class="social_link" aria-label="Telegram">
-            <img src="C:\Users\rashi\WebstormProjects\test\src\img\telegram.png" alt="">
+            <img class="social_icon" src="../img/telegram.png" alt="">
           </a>
         </div>
       </div>

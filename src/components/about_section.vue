@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="about_img">
-          <img src="C:\Users\rashi\WebstormProjects\test\src\img\alexander_rashidov.png" alt="">
+          <img src="../img/alexander_rashidov.png" alt="">
         </div>
       </div>
     </div>
