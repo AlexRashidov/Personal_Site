@@ -1,5 +1,34 @@
-<script setup>
-
+<script>
+import api from "@/api/api.js";
+export default {
+  data() {
+    return {
+      resumes: [],
+      contacts: [],
+      loading: false,
+      sending: false,
+      error: ''
+    }
+  },
+  mounted() {
+    this.fetchResumes()
+  },
+  methods: {
+    //GET запрос для получения резюме
+    async fetchResumes() {
+      this.loading = true
+      this.error = ''
+      try{
+        const response = await api.get('/api/resumes')
+        this.resumes = response.data.data
+      } catch(err){
+        this.error = "Something went wrong"
+      } finally {
+        this.loading = false
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -16,18 +45,18 @@
             </div>
 
             <!-- Элемент опыта -->
-            <div class="timeline_item">
+            <div v-for="resume in resumes" :key="resume.id" class="timeline_item">
               <div class="company_info">
-                <h3>Bank VTB</h3>
-                <div class="company_badge">Finance</div>
+                <h3>{{resume.company_name}}</h3>
+                <div class="company_badge">{{ resume.industry }}</div>
               </div>
               <div class="position_info">
                 <div class="date_range">
-                  <span class="date">01.12.2025 - 21.08.2025</span>
+                  <span class="date">{{resume.employment_date}} - {{ resume.dismissal_date }}</span>
                   <span class="duration">(9 months)</span>
                 </div>
-                <h3 class="position">Senior Technical Support Specialist</h3>
-                <p class="position_desc">Аdvised clients on technical issues, as well as on banking issues.</p>
+                <h3 class="position">{{resume.post}}</h3>
+                <p class="position_desc">{{ resume.description }}</p>
               </div>
             </div>
           </div>
