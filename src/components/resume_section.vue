@@ -4,7 +4,6 @@ export default {
   data() {
     return {
       resumes: [],
-      contacts: [],
       loading: false,
       sending: false,
       error: ''
@@ -19,8 +18,8 @@ export default {
       this.loading = true
       this.error = ''
       try{
-        const response = await api.get('/api/resumes')
-        this.resumes = response.data.data
+        const response = await api.get('/resume/list')
+        this.resumes = response.data
       } catch(err){
         this.error = "Something went wrong"
       } finally {
