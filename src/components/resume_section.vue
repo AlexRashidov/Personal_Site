@@ -18,8 +18,8 @@ export default {
       this.loading = true
       this.error = ''
       try{
-        const response = await api.get('/resume/list')
-        this.resumes = response.data
+        const response = await api.get('/api/resumes')
+        this.resumes = response.data.data
       } catch(err){
         this.error = "Something went wrong"
       } finally {
