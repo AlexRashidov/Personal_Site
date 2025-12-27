@@ -1,4 +1,3 @@
-
 <script>
 import {useContactButtonStore} from "@/stores/contact_button_store.js";
 import {mapActions, mapState} from "pinia";
@@ -17,238 +16,209 @@ export default {
 
 <template>
   <div class="contact-wrapper">
-    <!-- Кнопка -->
-    <button class="contact_button" @click="openForm">
+    <!-- Кнопка Contact me -->
+    <button
+        class="contact-btn btn btn-lg px-5 py-3"
+        @click="openForm"
+    >
       Contact me
     </button>
 
-    <!-- Модальное окно с формой -->
-    <div v-if="showForm" class="contact-modal-overlay" @click.self="closeForm">
-      <div class="contact-modal">
-        <div class="modal-header">
-          <h2>Contact Me</h2>
-          <button class="close-btn" @click="closeForm">×</button>
+    <!-- Bootstrap Modal -->
+    <div
+        v-if="showForm"
+        class="modal show d-block"
+        tabindex="-1"
+        role="dialog"
+        style="background-color: rgba(0, 0, 0, 0.5);"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <!-- Заголовок модального окна -->
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold">Contact Me</h5>
+            <button
+                type="button"
+                class="btn-close"
+                @click="closeForm"
+                aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Тело модального окна с формой -->
+          <div class="modal-body">
+            <form @submit.prevent="submitForm" class="contact-form">
+              <!-- Имя -->
+              <div class="mb-3">
+                <label for="name" class="form-label fw-semibold">Name *</label>
+                <input
+                    v-model="formData.name"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Your name"
+                    required
+                >
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Email *</label>
+                <input
+                    v-model="formData.email"
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="email@example.com"
+                    required
+                >
+              </div>
+
+              <!-- Сообщение -->
+              <div class="mb-4">
+                <label for="message" class="form-label fw-semibold">Message *</label>
+                <textarea
+                    v-model="formData.message"
+                    class="form-control"
+                    id="message"
+                    rows="4"
+                    placeholder="Enter message..."
+                    required
+                ></textarea>
+              </div>
+
+              <!-- Кнопки формы -->
+              <div class="d-flex gap-3">
+                <button
+                    type="submit"
+                    :disabled="isSubmitting"
+                    class="btn btn-primary flex-grow-1 py-2"
+                >
+                  <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+                  {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                </button>
+                <button
+                    type="button"
+                    @click="closeForm"
+                    class="btn btn-outline-secondary py-2"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <form @submit.prevent="submitForm" class="contact-form">
-          <!-- Поля формы -->
-          <div class="form-group">
-            <label>Name *</label>
-            <input
-                v-model="formData.name"
-                type="text"
-                placeholder="Your name"
-                required
-            >
-          </div>
-
-          <div class="form-group">
-            <label>Email *</label>
-            <input
-                v-model="formData.email"
-                type="email"
-                placeholder="email@example.com"
-                required
-            >
-          </div>
-
-          <div class="form-group">
-            <label>Message *</label>
-            <textarea
-                v-model="formData.message"
-                rows="4"
-                placeholder="Enter message..."
-                required
-            ></textarea>
-          </div>
-
-          <!-- Кнопки формы -->
-          <div class="form-actions">
-            <button type="submit" :disabled="isSubmitting" class="submit-btn">
-              {{ isSubmitting ? 'Sending...' : 'Send' }}
-            </button>
-            <button type="button" @click="closeForm" class="cancel-btn">
-              Cancel
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
 </template>
 
-
 <style scoped>
-/* Контейнер */
-.contact-wrapper {
-  display: inline-block;
+/* Кастомная кнопка Contact me */
+.contact-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* Кнопка Contact me */
-.contact_button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-
-.contact_button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.contact_button:active {
-  transform: translateY(-1px);
-}
-
-/* Модальное окно */
-.contact-modal-overlay {
-  position: fixed;
+.contact-btn::before {
+  content: '';
+  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
 }
 
-.contact-modal {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: slideUp 0.3s ease;
+.contact-btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+.contact-btn:hover::before {
+  left: 100%;
+}
+
+.contact-btn:active {
+  transform: translateY(-1px) !important;
+}
+
+/* Кастомизация модального окна */
+.modal-content {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  animation: slideUp 0.3s ease !important;
 }
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
+  border-bottom: 1px solid #e9ecef !important;
+  padding: 1.5rem 1.5rem 1rem !important;
 }
 
-.modal-header h2 {
-  margin: 0;
-  color: #333;
+.modal-title {
+  color: #333 !important;
+  font-size: 1.5rem !important;
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #666;
-  line-height: 1;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.3s;
+.modal-body {
+  padding: 1rem 1.5rem 1.5rem !important;
 }
 
-.close-btn:hover {
-  background: #f5f5f5;
+/* Кастомизация формы */
+.form-control {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Форма */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.form-control:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+.form-label {
+  color: #555 !important;
+  margin-bottom: 0.5rem !important;
 }
 
-.form-group label {
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #555;
+/* Кнопки в форме */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
 }
 
-.form-group input,
-.form-group textarea {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s;
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+.btn-primary:disabled {
+  background: #ccc !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
-.form-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+.btn-outline-secondary:hover {
+  background-color: #f8f9fa !important;
 }
 
-.submit-btn {
-  flex: 2;
-  background: #667eea;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background: #5a6fd8;
-}
-
-.submit-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.cancel-btn {
-  flex: 1;
-  background: #f5f5f5;
-  color: #666;
-  border: 1px solid #ddd;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.cancel-btn:hover {
-  background: #e5e5e5;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
+/* Анимация */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -261,19 +231,46 @@ export default {
 }
 
 /* Адаптивность */
-@media (max-width: 600px) {
-  .contact-modal {
-    padding: 20px;
-    width: 95%;
+@media (max-width: 768px) {
+  .contact-btn {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 15px !important;
   }
 
-  .form-actions {
-    flex-direction: column;
+  .modal-dialog {
+    margin: 1rem !important;
   }
 
-  .submit-btn,
-  .cancel-btn {
-    width: 100%;
+  .modal-content {
+    padding: 0.5rem !important;
+  }
+
+  .d-flex {
+    flex-direction: column !important;
+  }
+
+  .btn {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-btn {
+    padding: 0.6rem 1.25rem !important;
+    font-size: 14px !important;
+  }
+
+  .modal-header {
+    padding: 1rem !important;
+  }
+
+  .modal-body {
+    padding: 1rem !important;
+  }
+
+  .form-control {
+    padding: 0.6rem 0.75rem !important;
   }
 }
 </style>

@@ -12,14 +12,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.2",
+    "bootstrap": "^5.3.8",
     "cors": "^2.8.5",
     "pinia": "^3.0.4",
     "vue": "^3.5.25",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
+    "@unocss/reset": "^66.5.11",
+    "@unocss/vite": "^66.5.11",
     "@vitejs/plugin-vue": "^6.0.2",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "unocss": "^66.5.11",
     "vite": "^7.2.4",
     "vite-plugin-vue-devtools": "^8.0.5"
   }

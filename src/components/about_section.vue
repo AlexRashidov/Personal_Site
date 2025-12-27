@@ -3,25 +3,60 @@
 </script>
 
 <template>
-  <section id="about" class="about_section">
-    <div class="about_content">
-      <h2>About Me:</h2>
-      <div class="about_grid">
-        <div class="about_text">
-          <p>Hello! I'm Alexander Rashidov, a Frontend Developer specialized in Vue.js.</p>
-          <p>With expertise in modern web technologies, I create responsive, user-friendly applications.</p>
-          <div class="skills">
-            <h3>Skills:</h3>
-            <ul>
-              <li>Vue.js | Vue Router</li>
-              <li>JavaScript</li>
-              <li>HTML 5 & CSS3 / SCSS</li>
-              <li>Git & GitHub</li>
-            </ul>
+  <section id="about" class="about-section py-5">
+    <!-- Bootstrap Container -->
+    <div class="container">
+      <!-- Заголовок -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h2 class="display-4 fw-bold text-light mb-0 corbel-font">
+            About Me:
+          </h2>
+        </div>
+      </div>
+
+      <!-- Основной контент -->
+      <div class="row">
+        <!-- Текстовая часть -->
+        <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
+          <div class="about-text">
+            <p class="text-light fs-4 mb-4 corbel-font">
+              Hello! I'm Alexander Rashidov, a Frontend Developer specialized in Vue.js.
+            </p>
+            <p class="text-light fs-4 mb-5 corbel-font">
+              With expertise in modern web technologies, I create responsive, user-friendly applications.
+            </p>
+
+            <!-- Навыки -->
+            <div class="skills-card p-4">
+              <h3 class="text-light h3 mb-4 corbel-font">Skills:</h3>
+              <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-primary fs-6 py-3 px-4 skill-badge">
+                  Vue.js | Vue Router
+                </span>
+                <span class="badge bg-primary fs-6 py-3 px-4 skill-badge">
+                  JavaScript
+                </span>
+                <span class="badge bg-primary fs-6 py-3 px-4 skill-badge">
+                  HTML 5 & CSS3 / SCSS
+                </span>
+                <span class="badge bg-primary fs-6 py-3 px-4 skill-badge">
+                  Git & GitHub
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="about_img">
-          <img src="../img/alexander_rashidov.png" alt="">
+
+        <!-- Изображение - выше и правее -->
+        <div class="col-lg-6 col-md-12">
+          <div class="about-image-wrapper">
+            <img
+                src="../img/alexander_rashidov.png"
+                alt="Alexander Rashidov"
+                class="about-image"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -29,110 +64,123 @@
 </template>
 
 <style scoped>
-.about_section {
+.about-section {
   min-height: 100vh;
+  background-color: #0a0a1a;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  background-color: #0a0a1a;
   font-family: "Corbel", serif;
 }
 
-.about_content {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
+.corbel-font {
+  font-family: "Corbel", serif !important;
 }
 
-.about_content h2 {
-  font-size: 45px;
-  color: #e6f7ff;
-  margin: 0;
-  text-align: left;
-  padding-left: 20px;
-
-
-}
-
-.about_grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.about_text {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding-top: 100px;
-
-}
-
-.about_text p {
-  color: #e6f7ff;
-  font-size: 25px;
-  line-height: 1.6;
-  margin: 0;
-  padding-left: 20px;
-}
-
-.skills {
-  margin-top: 20px;
-  padding: 25px;
+/* Навыки */
+.skills-card {
   border: 2px solid #25108D;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.05);
-  width: 100%;
 }
 
-.skills h3 {
-  font-size: 24px;
-  color: #e6f7ff;
-  margin: 0 0 20px 0;
-}
-
-.skills ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skills li {
-  background-color: #25108D;
-  color: #e6f7ff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 16px;
+.badge.bg-primary {
+  background-color: #25108D !important;
+  color: #e6f7ff !important;
   font-weight: 500;
   transition: all 0.3s ease;
+  border-radius: 25px;
+  cursor: default;
 }
 
-.skills li:hover {
-  background-color: #3a1cb3;
+.skill-badge:hover {
+  background-color: #3a1cb3 !important;
   transform: translateY(-2px);
 }
 
-.about_img {
+/* Изображение - ВЫШЕ и ПРАВЕЕ */
+.about-image-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 635px;
-  width: 100%;
+  justify-content: flex-end; /* Выравниваем по правому краю */
+  align-items: flex-start;    /* Выравниваем по верхнему краю */
+  margin-top: -250px;          /* Поднимаем выше на 50px */
+  padding-left: 60px;         /* Сдвигаем правее на 60px */
 }
 
-.about_img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.about-image {
+  width: 105%;               /* Немного увеличиваем ширину */
+  max-width: 110%;           /* Максимальная ширина */
+  height: auto;
+  max-height: 750px;         /* Увеличиваем высоту */
   border-radius: 20px;
+  object-fit: contain;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .about-image-wrapper {
+    margin-top: -30px;
+    padding-left: 40px;
+  }
+
+  .about-image {
+    max-height: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .about-image-wrapper {
+    margin-top: 0;           /* На мобильных убираем поднятие */
+    padding-left: 0;
+    justify-content: center; /* Центрируем на мобильных */
+    align-items: center;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 100%;
+    max-height: 550px;
+  }
+
+  .display-4 {
+    font-size: 2.5rem !important;
+  }
+
+  .fs-4 {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .about-image {
+    max-height: 450px;
+  }
+
+  .display-4 {
+    font-size: 2rem !important;
+  }
+
+  .fs-4 {
+    font-size: 1.1rem !important;
+  }
+
+  .skill-badge {
+    font-size: 0.9rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-image {
+    max-height: 350px;
+  }
+
+  .skills-card {
+    padding: 1.5rem !important;
+  }
 }
 </style>

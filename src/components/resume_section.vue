@@ -15,31 +15,88 @@ export default {
 </script>
 
 <template>
-  <section id="resume" class="resume_section">
-    <div class="resume_content">
-      <h2>Resume</h2>
-      <div class="resume_grid">
-        <div class="resume_text">
-          <div class="experience_timeline">
-            <!-- Заголовок -->
-            <div class="timeline_header">
-              <div class="header_cell">Company</div>
-              <div class="header_cell">Time of work and position</div>
-            </div>
+  <section id="resume" class="resume-section py-5">
+    <!-- Bootstrap Container -->
+    <div class="container">
+      <!-- Заголовок -->
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="display-4 fw-bold text-light mb-0 corbel-font">
+            Resume
+          </h2>
+        </div>
+      </div>
 
-            <!-- Элемент опыта -->
-            <div v-for="resume in resumes" :key="resume.id" class="timeline_item">
-              <div class="company_info">
-                <h3>{{resume.company_name}}</h3>
-                <div class="company_badge">{{ resume.industry }}</div>
-              </div>
-              <div class="position_info">
-                <div class="date_range">
-                  <span class="date">{{resume.employment_date}} - {{ resume.dismissal_date }}</span>
-                  <span class="duration">(9 months)</span>
+      <!-- Содержимое резюме -->
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="resume-container border border-primary rounded-4 p-4 p-md-5">
+
+            <!-- Таблица опыта -->
+            <div class="experience-timeline">
+              <!-- Заголовок таблицы - только на десктопе -->
+              <div class="d-none d-md-grid timeline-header mb-4 pb-3 border-bottom">
+                <div class="header-cell fw-bold text-uppercase text-light fs-5">
+                  Company
                 </div>
-                <h3 class="position">{{resume.post}}</h3>
-                <p class="position_desc">{{ resume.description }}</p>
+                <div class="header-cell fw-bold text-uppercase text-light fs-5">
+                  Time of work and position
+                </div>
+              </div>
+
+              <!-- Элементы опыта -->
+              <div v-for="resume in resumes" :key="resume.id" class="timeline-item py-4 border-bottom">
+                <div class="row">
+                  <!-- Информация о компании -->
+                  <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="company-info">
+                      <h3 class="h4 fw-bold text-light mb-2">{{resume.company_name}}</h3>
+                      <span class="company-badge">
+                        {{ resume.industry }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Информация о должности -->
+                  <div class="col-md-8">
+                    <div class="position-info">
+                      <!-- Даты -->
+                      <div class="date-range mb-2">
+                        <span class="date fw-semibold text-light">
+                          {{resume.employment_date}} - {{ resume.dismissal_date }}
+                        </span>
+                        <span class="duration text-light opacity-75 ms-2">
+                          (9 months)
+                        </span>
+                      </div>
+
+                      <!-- Должность -->
+                      <h4 class="position h5 fw-bold text-light mb-2">
+                        {{resume.post}}
+                      </h4>
+
+                      <!-- Описание -->
+                      <p class="position-desc text-light opacity-90 mb-0">
+                        {{ resume.description }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Состояния загрузки -->
+              <div v-if="isLoading" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+
+              <div v-if="error" class="alert alert-danger" role="alert">
+                {{ error }}
+              </div>
+
+              <div v-if="!isLoading && resumes.length === 0" class="text-center py-5">
+                <p class="text-light">No experience records found.</p>
               </div>
             </div>
           </div>
@@ -50,158 +107,100 @@ export default {
 </template>
 
 <style scoped>
-.resume_content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color:  #e6f7ff;
-  font-size: 30px;
-}
-.resume_section {
-  color: #e6f7ff;
-  padding: 80px 20px;
+.resume-section {
+  font-family: "Corbel", serif;
 }
 
-.resume_content {
-  max-width: 1200px;
-  margin: 0 auto;
+.corbel-font {
+  font-family: "Corbel", serif !important;
 }
 
-.resume_content h2 {
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 60px;
-  text-align: center;
+/* Контейнер резюме */
+.resume-container {
+  border-color: #25108D !important;
+  border-radius: 30px !important;
 }
 
-/* Сетка резюме */
-.resume_grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  border: 1px solid #25108D;
-  border-radius: 30px;
-}
-
-/* Таймлайн опыта */
-.experience_timeline {
-  padding: 40px;
-}
-
-/* Заголовок таблицы */
-.timeline_header {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 30px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-.header_cell {
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-/* Элемент опыта */
-.timeline_item {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 30px;
-  padding: 30px 0;
-  border-bottom: 1px solid #f1f5f9;
-  align-items: start;
-}
-
-.timeline_item:last-child {
-  border-bottom: none;
-}
-
-/* Левая колонка - информация о компании */
-.company_info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.company_info h3 {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.company_badge {
+/* Бейдж компании */
+.company-badge {
   display: inline-block;
-  background: linear-gradient(45deg, #861BAC, #23108C);
-  color: #e6f7ff;
-  padding: 6px 16px;
-  border-radius: 20px;
+  background: linear-gradient(45deg, #861BAC, #23108C) !important;
+  color: #e6f7ff !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
   font-size: 14px;
   font-weight: 600;
-  width: fit-content;
+  border: none !important;
 }
 
-/* Правая колонка - информация о должности */
-.position_info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Элементы таймлайна */
+.timeline-item:last-child {
+  border-bottom: none !important;
 }
 
-.date_range {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 8px;
+.timeline-header {
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
 }
 
+/* Текст */
 .date {
   font-size: 16px;
-  font-weight: 600;
 }
 
 .duration {
   font-size: 14px;
 }
 
-.position {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.position_desc {
+.position-desc {
   font-size: 16px;
   line-height: 1.6;
-  margin: 0;
-  padding-right: 20px;
 }
 
-/* Адаптивность */
+/* Адаптивность с Bootstrap breakpoints */
 @media (max-width: 768px) {
-  .resume_content h2 {
-    font-size: 36px;
+  .resume-section {
+    padding: 2rem 0 !important;
   }
 
-  .experience_timeline {
-    padding: 20px;
+  .display-4 {
+    font-size: 2.5rem !important;
   }
 
-  .timeline_header,
-  .timeline_item {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .resume-container {
+    padding: 1.5rem !important;
   }
 
-  .timeline_header {
-    display: none;
+  .timeline-item {
+    padding: 1.5rem 0 !important;
   }
 
-  .timeline_item {
-    padding: 20px 0;
+  .company-info h3 {
+    font-size: 1.25rem !important;
   }
 
-  .position_desc {
-    padding-right: 0;
+  .position {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 2rem !important;
+  }
+
+  .resume-container {
+    padding: 1rem !important;
+    border-radius: 20px !important;
+  }
+
+  .timeline-item {
+    padding: 1rem 0 !important;
+  }
+
+  .company-badge {
+    font-size: 12px !important;
+    padding: 4px 12px !important;
   }
 }
 </style>

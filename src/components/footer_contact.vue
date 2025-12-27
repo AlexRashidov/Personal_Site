@@ -1,100 +1,159 @@
 <script setup>
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
+const navigate = (name) => {
+  router.push({ name, hash: `#${name}` })
+}
 </script>
 
 <template>
-  <footer id="contact" class="footer">
-    <div class="footer_container">
-      <!-- Контактная информация -->
-      <div class="footer_contact">
-        <h3 class="footer_title">Get in Touch</h3>
+  <footer id="contact" class="footer pt-5">
+    <!-- Основной контейнер -->
+    <div class="container">
+      <div class="row g-4 g-lg-5 mb-5">
+        <!-- Контактная информация -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-contact">
+            <h3 class="footer-title mb-4">Get in Touch</h3>
 
-        <div class="contact_item">
-          <div class="contact_icon"><img class="social_icon" src="../img/email.png" alt=""></div>
-          <div class="contact_info">
-            <span class="contact_label">Email</span>
-            <a href="mailto:rashidov.sasha@yandex.ru" class="contact_link">rashidov.sasha@yandex.ru</a>
+            <!-- Email -->
+            <div class="contact-item d-flex align-items-start mb-4">
+              <div class="contact-icon me-3">
+                <img class="social-icon" src="../img/email.png" alt="Email">
+              </div>
+              <div class="contact-info">
+                <span class="contact-label d-block mb-1">Email</span>
+                <a href="mailto:rashidov.sasha@yandex.ru" class="contact-link">
+                  rashidov.sasha@yandex.ru
+                </a>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-item d-flex align-items-start mb-4">
+              <div class="contact-icon me-3">
+                <img class="social-icon" src="../img/phone.png" alt="Phone">
+              </div>
+              <div class="contact-info">
+                <span class="contact-label d-block mb-1">Phone</span>
+                <a href="tel:+79234422115" class="contact-link">
+                  +7 923-442-21-15
+                </a>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-item d-flex align-items-start">
+              <div class="contact-icon me-3">
+                <img class="social-icon" src="../img/location.png" alt="Location">
+              </div>
+              <div class="contact-info">
+                <span class="contact-label d-block mb-1">Location</span>
+                <span class="contact-text">Tomsk, Russia</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="contact_item">
-          <div class="contact_icon"><img class="social_icon" src="../img/phone.png" alt=""></div>
-          <div class="contact_info">
-            <span class="contact_label">Phone</span>
-            <a href="tel:+1234567890" class="contact_link">+7 923-442-21-15</a>
+        <!-- Социальные сети -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-social">
+            <h3 class="footer-title mb-4">Follow Me</h3>
+            <div class="social-links d-flex gap-3">
+              <!-- GitHub -->
+              <a
+                  href="https://github.com/AlexRashidov"
+                  class="social-link d-flex align-items-center justify-content-center"
+                  aria-label="GitHub"
+                  target="_blank"
+              >
+                <img class="social-icon" src="../img/github.png" alt="GitHub">
+              </a>
+
+              <!-- Telegram -->
+              <a
+                  href="https://t.me/fonvi1"
+                  class="social-link d-flex align-items-center justify-content-center"
+                  aria-label="Telegram"
+                  target="_blank"
+              >
+                <img class="social-icon" src="../img/telegram.png" alt="Telegram">
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="contact_item">
-          <div class="contact_icon">
-            <img class="social_icon" src="../img/location.png" alt="">
-          </div>
-          <div class="contact_info">
-            <span class="contact_label">Location</span>
-            <span class="contact_text">Tomsk, Russia</span>
+        <!-- Быстрые ссылки -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-links">
+            <h3 class="footer-title mb-4">Quick Links</h3>
+            <ul class="links-list list-unstyled">
+              <li class="mb-3">
+                <a
+                    href="#"
+                    class="footer-link text-decoration-none"
+                    @click.prevent="navigate('home')"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                    href="#"
+                    class="footer-link text-decoration-none"
+                    @click.prevent="navigate('about')"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                    href="#"
+                    class="footer-link text-decoration-none"
+                    @click.prevent="navigate('resume')"
+                >
+                  Resume
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- Социальные сети -->
-      <div class="footer_social">
-        <h3 class="footer_title">Follow Me</h3>
-        <div class="social_links">
-          <a href="https://github.com/AlexRashidov" class="social_link" aria-label="GitHub">
-            <img class="social_icon" src="../img/github.png" alt="">
-          </a>
-          <a href="@fonvi1" class="social_link" aria-label="Telegram">
-            <img class="social_icon" src="../img/telegram.png" alt="">
-          </a>
+      <!-- Нижняя часть футера -->
+      <div class="footer-bottom py-4 border-top">
+        <div class="row align-items-center">
+          <div class="col-md-6 mb-3 mb-md-0">
+            <p class="copyright mb-0">© 2024 Alexander Rashidov. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="footer-note mb-0">Designed with ❤️</p>
+          </div>
         </div>
       </div>
-
-      <div class="footer_links">
-        <h3 class="footer_title">Quick Links</h3>
-        <ul class="links_list">
-          <li><a data-section="home" @click="$router.push({name: 'home', hash: '#home'})">Home</a></li>
-          <li><a data-section="about" @click="$router.push({name: 'about', hash: '#about'})">About</a></li>
-          <li><a data-section="resume" @click="$router.push({name: 'resume', hash: '#resume'})">Resume</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer_bottom">
-      <p class="copyright">© 2024 Alexander Rashidov. All rights reserved.</p>
-      <p class="footer_note">Designed with ❤️</p>
     </div>
   </footer>
 </template>
 
 <style scoped>
-
-
-
-
 .footer {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #fff;
-  padding: 4rem 2rem 2rem;
+  font-family: "Corbel", serif;
   margin-top: 4rem;
 }
 
-.footer_container {
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-  margin: 0 auto 3rem;
-}
-
-.footer_title {
+/* Заголовки секций */
+.footer-title {
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  padding-bottom: 0.5rem;
   color: #fff;
+  position: relative;
+  padding-bottom: 0.75rem;
 }
 
-.footer_title::after {
+.footer-title::after {
   content: '';
   position: absolute;
   left: 0;
@@ -106,19 +165,7 @@
 }
 
 /* Контактные элементы */
-.contact_item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.contact_item:hover {
-  transform: translateX(10px);
-}
-
-.contact_icon {
+.contact-icon {
   background: rgba(255, 255, 255, 0.1);
   width: 50px;
   height: 50px;
@@ -126,49 +173,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
-.contact_item:hover .contact_icon {
+.contact-item:hover .contact-icon {
   background: linear-gradient(135deg, #00dbde 0%, #fc00ff 100%);
 }
 
-.contact_label {
-  display: block;
+.contact-label {
   font-size: 0.9rem;
   color: #a0aec0;
-  margin-bottom: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.contact_link,
-.contact_text {
+.contact-link,
+.contact-text {
   color: #fff;
-  text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
 
-.contact_link:hover {
+.contact-link:hover {
   color: #00dbde;
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
-/* Социальные иконки */
-.social_links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-
+.contact-item {
+  transition: transform 0.3s ease;
 }
 
-.social_link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.contact-item:hover {
+  transform: translateX(10px);
+}
+
+/* Социальные ссылки */
+.social-link {
   width: 50px;
   height: 50px;
   background: rgba(255, 255, 255, 0.1);
@@ -178,7 +219,7 @@
   overflow: hidden;
 }
 
-.social_link::before {
+.social-link::before {
   content: '';
   position: absolute;
   top: 0;
@@ -189,42 +230,31 @@
   transition: left 0.5s ease;
 }
 
-.social_link:hover::before {
+.social-link:hover::before {
   left: 100%;
 }
 
-.social_link:hover {
+.social-link:hover {
   background: linear-gradient(135deg, #00dbde 0%, #fc00ff 100%);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.social_icon {
+.social-icon {
   width: 24px;
   height: 24px;
-  fill: white;
 }
 
 /* Быстрые ссылки */
-.links_list {
-  list-style: none;
-  padding: 0;
-}
-
-.links_list li {
-  margin-bottom: 0.8rem;
-}
-
-.footer_link {
+.footer-link {
   color: #a0aec0;
-  text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
-  padding-left: 0;
   display: inline-block;
+  padding-left: 0;
 }
 
-.footer_link::before {
+.footer-link::before {
   content: '→';
   position: absolute;
   left: -20px;
@@ -232,27 +262,19 @@
   transition: all 0.3s ease;
 }
 
-.footer_link:hover {
+.footer-link:hover {
   color: #fff;
   padding-left: 20px;
 }
 
-.footer_link:hover::before {
+.footer-link:hover::before {
   opacity: 1;
   left: 0;
 }
 
 /* Нижняя часть футера */
-.footer_bottom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+.footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .copyright {
@@ -260,7 +282,7 @@
   font-size: 0.9rem;
 }
 
-.footer_note {
+.footer-note {
   color: #fff;
   font-size: 0.9rem;
   background: linear-gradient(90deg, #00dbde, #fc00ff);
@@ -269,21 +291,48 @@
   background-clip: text;
 }
 
-/* Адаптивность */
+/* Адаптивность с Bootstrap breakpoints */
 @media (max-width: 768px) {
   .footer {
-    padding: 3rem 1rem 1.5rem;
+    padding: 3rem 0 !important;
+    margin-top: 2rem;
   }
 
-  .footer_container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .footer-title {
+    font-size: 1.25rem;
   }
 
-  .footer_bottom {
-    flex-direction: column;
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-bottom {
     text-align: center;
-    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    padding: 2rem 0 !important;
+  }
+
+  .contact-item {
+    margin-bottom: 1.25rem;
+  }
+
+  .links-list li {
+    margin-bottom: 0.5rem;
   }
 }
 </style>
