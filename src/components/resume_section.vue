@@ -1,31 +1,15 @@
 <script>
-import api from "@/api/api.js";
+import {useResumeStore} from '@/stores/resume_store.js'
+import {mapState, mapActions} from "pinia";
 export default {
-  data() {
-    return {
-      resumes: [],
-      loading: false,
-      sending: false,
-      error: ''
-    }
+  computed: {
+    ...mapState(useResumeStore,['resumes', 'isLoading', 'error']),
+  },
+  methods: {
+    ...mapActions(useResumeStore,['fetchResumes']),
   },
   mounted() {
     this.fetchResumes()
-  },
-  methods: {
-    //GET запрос для получения резюме
-    async fetchResumes() {
-      this.loading = true
-      this.error = ''
-      try{
-        const response = await api.get('/api/resumes')
-        this.resumes = response.data.data
-      } catch(err){
-        this.error = "Something went wrong"
-      } finally {
-        this.loading = false
-      }
-    }
   }
 }
 </script>

@@ -1,34 +1,7 @@
 <script>
 import contact_button from "@/components/contact_button.vue";
-import api from "@/api/api.js";
 export default {
   components: {contact_button},
-  data() {
-    return {
-      contacts:[],
-      sending: false,
-      error: '',
-    }
-  },
-  mounted() {
-    this.contactSendMessage()
-  },
-  methods: {
-    //POST запрос для добавления нового контакта
-    async contactSendMessage(newContact) {
-      this.sending = true
-      this.error = ''
-      try{
-        const response = await api.post('/api/contacts', newContact)
-        this.contacts.push(response.data)
-        return response.data
-      } catch(err){
-        this.error = "Something went wrong"
-      } finally {
-        this.sending = false
-      }
-    }
-  }
 }
 </script>
 
