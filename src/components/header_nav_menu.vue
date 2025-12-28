@@ -4,10 +4,10 @@
 
 <template>
   <header>
-    <!-- Bootstrap Navbar с твоим фоном -->
+    <!-- Bootstrap Navbar-->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <!-- Логотип/бренд (опционально) -->
+        <!-- Логотип -->
         <a class="navbar-brand" href="#">
           <span style="color: #e6f7ff; font-family: 'Corbel', serif;">Alexander Rashidov</span>
         </a>
@@ -92,7 +92,7 @@
   z-index: 1000;
 }
 
-/* Кастомные ссылки с твоим стилем */
+
 .custom-nav-link {
   color: #e6f7ff !important;
   text-decoration: none !important;
@@ -119,7 +119,7 @@
   background: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Кастомная кнопка меню */
+
 .custom-toggler {
   border-color: rgba(230, 247, 255, 0.3) !important;
   padding: 4px 8px !important;
@@ -129,7 +129,7 @@
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(230, 247, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-/* Бренд */
+
 .navbar-brand {
   color: #e6f7ff !important;
   font-family: "Corbel", serif !important;
@@ -138,7 +138,7 @@
   margin-right: 30px;
 }
 
-/* Мобильная версия */
+
 @media (max-width: 992px) {
   .navbar {
     margin-top: 10px;
@@ -164,7 +164,6 @@
   }
 }
 
-/* Для очень маленьких экранов */
 @media (max-width: 576px) {
   .navbar {
     padding: 8px 15px !important;

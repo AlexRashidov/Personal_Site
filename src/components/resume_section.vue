@@ -115,13 +115,13 @@ export default {
   font-family: "Corbel", serif !important;
 }
 
-/* Контейнер резюме */
+
 .resume-container {
   border-color: #25108D !important;
   border-radius: 30px !important;
 }
 
-/* Бейдж компании */
+
 .company-badge {
   display: inline-block;
   background: linear-gradient(45deg, #861BAC, #23108C) !important;
@@ -133,7 +133,7 @@ export default {
   border: none !important;
 }
 
-/* Элементы таймлайна */
+
 .timeline-item:last-child {
   border-bottom: none !important;
 }
@@ -143,7 +143,6 @@ export default {
   gap: 30px;
 }
 
-/* Текст */
 .date {
   font-size: 16px;
 }
@@ -157,7 +156,6 @@ export default {
   line-height: 1.6;
 }
 
-/* Адаптивность с Bootstrap breakpoints */
 @media (max-width: 768px) {
   .resume-section {
     padding: 2rem 0 !important;

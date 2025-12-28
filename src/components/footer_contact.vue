@@ -145,7 +145,6 @@ const navigate = (name) => {
   margin-top: 4rem;
 }
 
-/* Заголовки секций */
 .footer-title {
   font-size: 1.5rem;
   color: #fff;
@@ -164,7 +163,6 @@ const navigate = (name) => {
   border-radius: 2px;
 }
 
-/* Контактные элементы */
 .contact-icon {
   background: rgba(255, 255, 255, 0.1);
   width: 50px;
@@ -208,7 +206,6 @@ const navigate = (name) => {
   transform: translateX(10px);
 }
 
-/* Социальные ссылки */
 .social-link {
   width: 50px;
   height: 50px;
@@ -291,7 +288,6 @@ const navigate = (name) => {
   background-clip: text;
 }
 
-/* Адаптивность с Bootstrap breakpoints */
 @media (max-width: 768px) {
   .footer {
     padding: 3rem 0 !important;

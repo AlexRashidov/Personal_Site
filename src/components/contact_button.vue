@@ -114,7 +114,7 @@ export default {
 </template>
 
 <style scoped>
-/* Кастомная кнопка Contact me */
+
 .contact-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   color: white !important;
@@ -195,7 +195,7 @@ export default {
   margin-bottom: 0.5rem !important;
 }
 
-/* Кнопки в форме */
+
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   border: none !important;
@@ -218,7 +218,7 @@ export default {
   background-color: #f8f9fa !important;
 }
 
-/* Анимация */
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -230,7 +230,7 @@ export default {
   }
 }
 
-/* Адаптивность */
+
 @media (max-width: 768px) {
   .contact-btn {
     padding: 0.75rem 1.5rem !important;

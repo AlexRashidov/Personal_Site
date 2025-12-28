@@ -38,7 +38,7 @@ export default {
   padding: 2rem 0;
 }
 
-/* Кастомные стили для текста */
+
 h1 {
   font-family: "Corbel", serif !important;
   color: #e6f7ff !important;
@@ -52,7 +52,7 @@ h2 {
   line-height: 1.5;
 }
 
-/* Адаптивность для текста */
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5rem !important;

@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <!-- Изображение - выше и правее -->
+        <!-- Изображение -->
         <div class="col-lg-6 col-md-12">
           <div class="about-image-wrapper">
             <img
@@ -76,7 +76,6 @@
   font-family: "Corbel", serif !important;
 }
 
-/* Навыки */
 .skills-card {
   border: 2px solid #25108D;
   border-radius: 20px;
@@ -100,17 +99,17 @@
 /* Изображение - ВЫШЕ и ПРАВЕЕ */
 .about-image-wrapper {
   display: flex;
-  justify-content: flex-end; /* Выравниваем по правому краю */
-  align-items: flex-start;    /* Выравниваем по верхнему краю */
-  margin-top: -250px;          /* Поднимаем выше на 50px */
-  padding-left: 60px;         /* Сдвигаем правее на 60px */
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: -250px;
+  padding-left: 60px;
 }
 
 .about-image {
-  width: 105%;               /* Немного увеличиваем ширину */
-  max-width: 110%;           /* Максимальная ширина */
+  width: 105%;
+  max-width: 110%;
   height: auto;
-  max-height: 750px;         /* Увеличиваем высоту */
+  max-height: 750px;
   border-radius: 20px;
   object-fit: contain;
 }
@@ -129,9 +128,9 @@
 
 @media (max-width: 992px) {
   .about-image-wrapper {
-    margin-top: 0;           /* На мобильных убираем поднятие */
+    margin-top: 0;
     padding-left: 0;
-    justify-content: center; /* Центрируем на мобильных */
+    justify-content: center;
     align-items: center;
   }
 
